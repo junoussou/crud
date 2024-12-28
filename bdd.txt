@@ -1,0 +1,73 @@
+les champs de la based de données
+
+id
+titre
+histoire
+langue
+date de sortie
+billetterie
+classement
+durée du film
+
+
+    -   Cinéma
+        CREATE TABLE Cinema(
+            id int not null AUTO_INCREMENT PRIMARY KEY,
+            titre varchar(255) not null,
+            description text,
+            langue varchar(100),
+            genre varchar(255),
+            date_de_sortie varchar(100),
+            box_office float,
+            duree varchar(100),
+            nombre_etoiles float
+        );
+
+        CREATE TABLE cinema (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            titre VARCHAR(255) NOT NULL,
+            description TEXT,
+            langue VARCHAR(100),
+            genre INT,
+            date_de_sortie varchar(100),
+            box_office float,
+            duree varchar(100),
+            nombre_etoiles float,
+            FOREIGN KEY (genre) REFERENCES genre(id)
+        );
+
+
+
+
+<table border="1">
+        <thead>
+            <th colspan="2"></th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Langue</th>
+            <th>Durée</th>
+        </thead>
+        <tbody>
+            <?php
+            $table = "cinema";
+            $fields = "*";
+            $req = $sql->read($table, $fields);
+            $dt = '';
+            while ($dt_req = $req->fetch()) {
+                $dt .= '<tr>
+                        <td>
+                            <a href="index.php?controller=del_content&id=' . replacePLus(chiffrerAES($dt_req["id"], $encrypt_key)) . '">&#x274C;</a>
+                        </td>
+                        <td>
+                            <a href="index.php?controller=edit_content&id=' . replacePLus(chiffrerAES($dt_req["id"], $encrypt_key)) . '&title=' . replacePLus($dt_req["titre"]) . '&descr=' . replacePLus($dt_req["description"]) . '&lang=' . replacePLus($dt_req["langue"]) . '&genre=' . replacePLus($dt_req["genre"]) . '&out_date=' . replacePLus($dt_req["date_de_sortie"]) . '&box=' . replacePLus($dt_req["box_office"]) . '&duree=' . replacePLus($dt_req["duree"]) . '&stars=' . replacePLus($dt_req["nombre_etoiles"]) . '">&#x270D;</a>
+                        </td>
+                        <td>' . dechiffrerAES($dt_req["titre"], $encrypt_key) . '</td>
+                        <td>' . dechiffrerAES($dt_req["description"], $encrypt_key) . '</td>
+                        <td>' . $dt_req["langue"] . '</td>
+                        <td>' . dechiffrerAES($dt_req["duree"], $encrypt_key) . '</td>
+                    </tr>';
+            }
+            echo $dt;
+            ?>
+        </tbody>
+    </table>

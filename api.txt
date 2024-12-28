@@ -1,0 +1,15 @@
+C'est quoi une API ?
+
+API : Application Programming Interface
+
+    -   définit les ensembles de règles et protocoles qui permet à des applications de communiquer entre elles
+    -   définit comment les programmes peuvent interagir avec les services ou les données d'un système
+    -   facilite l'accès aux fonctionnalités d'une application ou d'un service sans avoir a connaître les détails de son fonctionnement interne
+
+API REST / RESTful
+
+Une API REST (Representational State Transfert) est une architechture d'API qui utilise les principales méthodes HTTP (GET, POST, PUT, DELETE) pour manipuler les données d'un service ou d'une application
+
+Une API RESTful utilise généralement es méthodes HTTP standard pour les opérations CRUD (Create, Read, Update, Delete) sur les ressources, et utilise URIs pour identifier les ressources
+
+Une API RESTful est très flexible et est la plus utilisée pour créer des applications web et mobiles, ainsi que pour connecter des services et systèms différents
